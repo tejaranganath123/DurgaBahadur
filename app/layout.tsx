@@ -1,6 +1,7 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import './globals.css'
+import { academies, academyPhone } from '@/lib/academies'
 
 // Vercel sets VERCEL_PROJECT_PRODUCTION_URL automatically on deploy
 export const siteUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
@@ -8,13 +9,13 @@ export const siteUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
   : 'http://localhost:3000'
 
 const description =
-  'Durga Bahadur — music director, composer and music teacher. Listen to Durga Bahadur film scores, compositions and live performances, and learn guitar, piano, production and voice at Artshala, his music academy.'
+  'Durga Bahadur — music director, composer and music teacher. Listen to Durga Bahadur film scores, compositions and live performances, and learn guitar, piano, production and voice at Artshala Music Academy in Dilsukhnagar and Attapur, Hyderabad — offline and online classes.'
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: 'Durga Bahadur — Music Director, Composer & Music Academy | Artshala',
+  title: 'Durga Bahadur — Music Director & Artshala Music Academy, Hyderabad',
   description,
-  keywords: ['Durga Bahadur', 'Durga Bahadur music', 'Durga Bahadur musical', 'Durga musical', 'Durga music', 'Durga Bahadur composer', 'Durga Bahadur music director', 'music director', 'film music director', 'composer', 'Artshala Academy', 'Artshala music academy', 'music academy', 'best music academy', 'music school', 'music classes', 'guitar classes', 'piano classes', 'vocal classes', 'music production course'],
+  keywords: ['Durga Bahadur', 'Durga Bahadur music', 'Durga Bahadur musical', 'Durga musical', 'Durga music', 'Durga Bahadur composer', 'Durga Bahadur music director', 'music director', 'film music director', 'composer', 'Artshala Academy', 'Artshala music academy', 'music academy', 'best music academy', 'music school', 'music classes', 'guitar classes', 'piano classes', 'vocal classes', 'music production course', 'music academy in Hyderabad', 'best music academy in Hyderabad', 'music academy in Dilsukhnagar', 'music classes in Dilsukhnagar', 'music academy in Attapur', 'music classes in Attapur', 'online music classes'],
   alternates: { canonical: '/' },
   verification: { google: 'NhOTuQCjhzckz5ipc9yv9HgACa6vc5M_jOnWf33qUB0' },
   openGraph: {
@@ -72,14 +73,17 @@ export default function RootLayout({
                 jobTitle: ['Music Director', 'Composer', 'Music Teacher'],
                 url: siteUrl,
               },
-              {
+              ...academies.map((a) => ({
                 '@context': 'https://schema.org',
                 '@type': 'MusicSchool',
-                name: 'Artshala Music Academy',
+                name: `Artshala Music Academy — ${a.area}`,
                 founder: { '@type': 'Person', name: 'Durga Bahadur' },
-                description: 'Music academy by music director Durga Bahadur offering guitar, piano, music production and voice classes.',
+                description: `Music academy in ${a.area}, Hyderabad by music director Durga Bahadur. Offline and online guitar, piano, music production and voice classes.`,
                 url: `${siteUrl}/#academy`,
-              },
+                hasMap: a.map,
+                telephone: academyPhone,
+                address: { '@type': 'PostalAddress', streetAddress: a.street, addressLocality: 'Hyderabad', addressRegion: 'Telangana', postalCode: a.pin, addressCountry: 'IN' },
+              })),
             ]),
           }}
         />
