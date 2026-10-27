@@ -27,19 +27,10 @@ export const metadata: Metadata = {
   },
   twitter: { card: 'summary_large_image', title: 'Durga Bahadur — Music Director & Composer', description },
   icons: {
+    // Google wants a square favicon sized in multiples of 48px
     icon: [
-      {
-        url: '/icon-light-32x32.png',
-        media: '(prefers-color-scheme: light)',
-      },
-      {
-        url: '/icon-dark-32x32.png',
-        media: '(prefers-color-scheme: dark)',
-      },
-      {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
-      },
+      { url: '/icon-96.png', sizes: '96x96', type: 'image/png' },
+      { url: '/icon.svg', type: 'image/svg+xml' },
     ],
     apple: '/apple-icon.png',
   },
@@ -65,6 +56,14 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify([
+              // Google reads the site name shown in results from WebSite schema
+              {
+                '@context': 'https://schema.org',
+                '@type': 'WebSite',
+                name: 'Durga Bahadur',
+                alternateName: ['Durga Bahadur Music', 'Durga Musical'],
+                url: siteUrl,
+              },
               {
                 '@context': 'https://schema.org',
                 '@type': 'Person',
@@ -72,6 +71,7 @@ export default function RootLayout({
                 alternateName: ['Durga Musical', 'Durga Bahadur Musical'],
                 jobTitle: ['Music Director', 'Composer', 'Music Teacher'],
                 url: siteUrl,
+                image: `${siteUrl}/apple-icon.png`,
               },
               ...academies.map((a) => ({
                 '@context': 'https://schema.org',
