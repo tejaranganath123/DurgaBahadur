@@ -1,10 +1,10 @@
 // Audio lives in public/music/<category>/. Add a file there, then a line here.
 export const categories = [
-  { id: 'theme', name: 'Theme', blurb: 'Anthems & tributes', tint: 'from-[#6d28d9] to-[#1e1b4b]' },
-  { id: 'dance', name: 'Dance', blurb: 'Floor fillers', tint: 'from-[#db2777] to-[#3b0764]' },
-  { id: 'love', name: 'Love Songs', blurb: 'Melodies of the heart', tint: 'from-[#e11d48] to-[#4c0519]' },
-  { id: 'sad', name: 'Sad Songs', blurb: 'Quiet & soulful', tint: 'from-[#2563eb] to-[#172554]' },
-  { id: 'experimental', name: 'Experimental', blurb: 'Trance, fusion & beyond', tint: 'from-[#0d9488] to-[#042f2e]' },
+  { id: 'theme', name: 'Theme', blurb: 'Anthems & tributes' },
+  { id: 'dance', name: 'Dance', blurb: 'Floor fillers' },
+  { id: 'love', name: 'Love Songs', blurb: 'Melodies of the heart' },
+  { id: 'sad', name: 'Sad Songs', blurb: 'Quiet & soulful' },
+  { id: 'experimental', name: 'Experimental', blurb: 'Trance, fusion & beyond' },
 ] as const
 
 export type CategoryId = (typeof categories)[number]['id']
